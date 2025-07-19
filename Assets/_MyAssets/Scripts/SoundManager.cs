@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#pragma warning disable 1998 // 1998: Asyncメソッドでawaitがない場合の警告を無視
+
+using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 
@@ -30,9 +32,9 @@ namespace Sound
 
         private Dictionary<string, SoundData> soundDict = new Dictionary<string, SoundData>();
 
-         void Awake()
+        void Awake()
         {
-           
+
             //DontDestroyOnLoad(gameObject);
             foreach (var s in soundList)
             {
