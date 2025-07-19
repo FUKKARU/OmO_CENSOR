@@ -16,7 +16,7 @@ namespace Scripts.Utilities
 
                     if (_instance == null)
                     {
-                        Debug.LogError($"No instance of {typeof(T).Name} found in Resources. Please ensure it exists.");
+                        $"No instance of {typeof(T).Name} found in Resources. Please ensure it exists.".LogError();
                     }
                 }
 
