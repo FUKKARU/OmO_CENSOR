@@ -15,7 +15,7 @@ namespace Scripts.Utilities
                     T[] instances = FindObjectsByType<T>(FindObjectsSortMode.None);
                     if (instances == null || instances.Length == 0)
                     {
-                        Debug.LogError($"No instance of {typeof(T).Name} found in the scene. Please ensure there is one instance present.");
+                        $"No instance of {typeof(T).Name} found in the scene. Please ensure there is one instance present.".LogError();
                         return null;
                     }
                     else if (instances.Length == 1)
@@ -24,7 +24,7 @@ namespace Scripts.Utilities
                     }
                     else
                     {
-                        Debug.LogWarning($"Multiple instances of {typeof(T).Name} found in the scene. Using the first instance and destroying others.");
+                        $"Multiple instances of {typeof(T).Name} found in the scene. Using the first instance and destroying others.".LogWarning();
                         _instance = instances[0];
                         for (int i = 1; i < instances.Length; ++i)
                         {
