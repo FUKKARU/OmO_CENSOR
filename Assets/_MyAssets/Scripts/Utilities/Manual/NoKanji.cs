@@ -1,10 +1,28 @@
 namespace Scripts.Utilities
 {
+    
     public static partial class ManualChecker
     {
-        private static bool Check_NoKanji(this string text)
+
+
+
+#if true
+        [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterSceneLoad)]
+        private static void Test_Check_NoKanji()
         {
-            return false;
+
+            UnityEngine.Debug.Log("Hello World");
         }
+#endif
+
+
+
+
+        public static bool Check_NoKanji(this string text)
+        {
+            return !System.Text.RegularExpressions.Regex.IsMatch(text, @"\p{IsCJKUnifiedIdeographs}");
+        }
+
+
     }
 }
