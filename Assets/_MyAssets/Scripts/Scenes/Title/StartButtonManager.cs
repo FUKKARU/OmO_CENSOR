@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 using Scripts.Utilities;
 using Scripts.Utilities.Buttons;
 using Ct = System.Threading.CancellationToken;
+using Scripts.ScriptableObjects;
 
 namespace Scripts.Scenes.Title
 {
@@ -20,6 +21,7 @@ namespace Scripts.Scenes.Title
         [SerializeField] private Sprite bgCleared;
         [SerializeField] private Sprite bgClearedDanger;
         [SerializeField] private Image bg;
+        [SerializeField] private AudioSource bgmAs;
 
         private void Start() => ChangeBgPeriodically(destroyCancellationToken).Forget();
         protected sealed override void OnClickSucceeded() => GoToMainScene(destroyCancellationToken).Forget();
@@ -37,6 +39,8 @@ namespace Scripts.Scenes.Title
             await bg.transform.DOScaleX(1, 0.3f).SetEase(Ease.InBounce).WithCancellation(ct);
             BackgroundImage.enabled = true;
             Text.enabled = true;
+
+            0.2f.SecAwaitThenDo(() => bgmAs.Raise(SSound.Entity.TitleBGM, SoundType.BGM), ct).Forget();
 
             while (!ct.IsCancellationRequested)
             {
