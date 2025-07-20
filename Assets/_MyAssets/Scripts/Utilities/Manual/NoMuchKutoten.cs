@@ -7,11 +7,11 @@ namespace Scripts.Utilities
         [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Test_Check_MochKutoten()
         {
-            string test1 = "‚±‚ê‚ÍƒeƒXƒg‚Å‚·B–â‘è‚ ‚è‚Ü‚¹‚ñB";
-            string test2 = "‚±‚ê‚ÍAƒeƒXƒg‚Å‚·A–â‘è‚ªA‚ ‚é‚æ‚¤‚Å‚·B";
+            string test1 = "ã“ã‚Œã¯ãƒ†ã‚¹ãƒˆã§ã™ã€‚å•é¡Œã‚ã‚Šã¾ã›ã‚“ã€‚";
+            string test2 = "ã“ã‚Œã¯ã€ãƒ†ã‚¹ãƒˆã§ã™ã€å•é¡ŒãŒã€ã‚ã‚‹ã‚ˆã†ã§ã™ã€‚";
 
-            UnityEngine.Debug.Log($"test1i‹å“Ç“_­j: {test1.Check_NoMuchKutoten()}"); // ¨ true
-            UnityEngine.Debug.Log($"test2i‹å“Ç“_‘½j: {test2.Check_NoMuchKutoten()}"); // ¨ false
+            UnityEngine.Debug.Log($"test1ï¼ˆå¥èª­ç‚¹å°‘ï¼‰: {test1.Check_NoMuchKutoten()}"); // â†’ true
+            UnityEngine.Debug.Log($"test2ï¼ˆå¥èª­ç‚¹å¤šï¼‰: {test2.Check_NoMuchKutoten()}"); // â†’ false
 
         }
 #endif
@@ -22,14 +22,14 @@ namespace Scripts.Utilities
 
             foreach (char c in text)
             {
-                if (c == 'A' || c == 'B')
+                if (c == 'ã€' || c == 'ã€‚')
                 {
                     count++;
-                    if (count >= 3) return false; // ‹å“Ç“_‚ª3‚ÂˆÈã ¨ ˆá”½
+                    if (count >= 3) return false; // å¥èª­ç‚¹ãŒ3ã¤ä»¥ä¸Š â†’ é•å
                 }
             }
 
-            return true; // ‹å“Ç“_‚ª2‚ÂˆÈ‰º ¨ ‹–—e
+            return true; // å¥èª­ç‚¹ãŒ2ã¤ä»¥ä¸‹ â†’ è¨±å®¹
         }
 
 

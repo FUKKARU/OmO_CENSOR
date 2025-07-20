@@ -13,10 +13,10 @@ public class ForTest : MonoBehaviour
     {
         //List<char> foundKanji = scanner.ExtractKanjiFromTMP();
         string fullText = manualText.text;
-        string detected = detectedString; // ŒŸ‰{‚ÅE‚Á‚½•¶š
+        string detected = detectedString; // ???{??E????????
 
         float accuracy = scanner.CalculateKanjiAccuracy(fullText, detected);
-        Debug.Log($"ÀŒ±Œ‹‰ÊF³“š—¦‚Í {accuracy * 100:0.0}%");
+        Debug.Log($"????????F???????? {accuracy * 100:0.0}%");
 
     }
 

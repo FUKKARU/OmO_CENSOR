@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class Censorship : MonoBehaviour
@@ -10,6 +11,10 @@ public class Censorship : MonoBehaviour
     [SerializeField] private LineRenderer lineRendererPrefab;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float thresholdRadius = 0.1f;
+    [SerializeField] private float maxInk = 100f;
+    [SerializeField] private float ink = 100f;
+    [SerializeField] private float useInk = 0.1f;
+    [SerializeField] private Image fillInk;
 
     private List<Rect> characterBounds = new();
     private List<int> characterRealIndices = new(); // 実テキストのインデックス
@@ -20,7 +25,15 @@ public class Censorship : MonoBehaviour
     private LineRenderer currentLine;
     private List<Vector3> currentLinePoints = new();
 
-    private const float fixedZ = 90f;
+    private const float fixedZ = 0;
+
+    // 残された文字
+    string remainingText;
+    public string RemainingText => remainingText;
+
+    // 検閲された文字
+    string censoredChars;
+    public string CensoredChars => censoredChars;
 
     void Start()
     {
@@ -33,6 +46,7 @@ public class Censorship : MonoBehaviour
     void Update()
     {
         HandleDrawingInput();
+        
     }
 
     private void HandleDrawingInput()
@@ -52,16 +66,36 @@ public class Censorship : MonoBehaviour
 
             if (currentLinePoints.Count == 0 || Vector3.Distance(mouseWorldPos, currentLinePoints[^1]) > 0.01f)
             {
-                currentLinePoints.Add(mouseWorldPos);
-                currentLine.positionCount = currentLinePoints.Count;
-                currentLine.SetPosition(currentLinePoints.Count - 1, mouseWorldPos);
+                float distance = 0f;
+                if (currentLinePoints.Count > 0)
+                {
+                    distance = Vector3.Distance(mouseWorldPos, currentLinePoints[^1]);
+                }
+
+                // インクを距離に応じて減らす
+                float inkToUse = distance * useInk;
+                if (ink >= inkToUse)
+                {
+                    ink -= inkToUse;
+
+                    currentLinePoints.Add(mouseWorldPos);
+                    currentLine.positionCount = currentLinePoints.Count;
+                    currentLine.SetPosition(currentLinePoints.Count - 1, mouseWorldPos);
+                }
+                else
+                {
+                    Debug.Log("インクが足りません");
+                }
             }
         }
+
 
         if (Input.GetMouseButtonUp(0))
         {
             CheckLineCollision(currentLinePoints);
         }
+
+        fillInk.fillAmount = ink / maxInk;
     }
 
     private void CacheCharacterBounds()
@@ -141,11 +175,30 @@ public class Censorship : MonoBehaviour
             return;
         }
 
+        // ソートして順序保持
         censoredRanges.Sort((a, b) => a.startIndex.CompareTo(b.startIndex));
-        string result = string.Concat(censoredRanges.ConvertAll(r => r.originalWord));
-        Debug.Log($"塗りつぶされた文字: 「{result}」");
 
-        CacheCharacterBounds(); // 再取得（位置ずれ対応）
+        // 検閲された文字列
+        censoredChars = string.Concat(censoredRanges.ConvertAll(r => r.originalWord));
+
+        // 残された文字列
+        string originalText = targetText.text;
+        char[] remainingChars = originalText.ToCharArray();
+        foreach (var r in censoredRanges)
+        {
+            for (int i = r.startIndex; i < r.startIndex + r.length; i++)
+            {
+                if (i >= 0 && i < remainingChars.Length)
+                    remainingChars[i] = '□'; // マスキング記号
+            }
+        }
+
+        remainingText = new string(remainingChars);
+
+        Debug.Log($"■ 検閲された文字: 「{censoredChars}」");
+        Debug.Log($"■ 残された文字列: 「{remainingText}」");
+
+        CacheCharacterBounds(); // 再取得
     }
 
     private void OnDrawGizmos()
