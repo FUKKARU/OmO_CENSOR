@@ -13,11 +13,11 @@ namespace Scripts.Utilities
                 {
                     if (number > 99)
                     {
-                        return true;
+                        return false;
                     }
                 }
             }
-            return false;
+            return true;
         }
     }
 }
