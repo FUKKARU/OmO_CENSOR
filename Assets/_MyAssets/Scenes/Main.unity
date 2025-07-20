@@ -1040,8 +1040,8 @@ MonoBehaviour:
   lineRendererPrefab: {fileID: 5065897414958138986, guid: 58212f896f6db462ab0e9f805d4c938e, type: 3}
   mainCamera: {fileID: 532118599}
   thresholdRadius: 0.15
-  maxInk: 100
-  ink: 100
+  maxInk: 1000
+  ink: 1000
   useInk: 1.5
   fillInk: {fileID: 297480742}
 --- !u!4 &1953302816
