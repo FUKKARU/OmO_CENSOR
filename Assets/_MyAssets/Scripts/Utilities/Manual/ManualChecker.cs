@@ -33,15 +33,15 @@ namespace Scripts.Utilities
         // textに対して指定されたManualIdのチェックを行う(単一)
         private static bool Check(this string text, ManualId id) => id switch
         {
-            ManualId.NoKanji => text.Check_NoKanji(id),
-            ManualId.NoMuchKutoten => text.Check_NoMuchKutoten(id),
-            ManualId.NoContinuousHiragana => text.Check_NoContinuousHiragana(id),
-            ManualId.NoEvenNumber => text.Check_NoEvenNumber(id),
-            ManualId.NoOddStrokesHiragana => text.Check_NoOddStrokesHiragana(id),
-            ManualId.NoSymbol => text.Check_NoSymbol(id),
-            ManualId.NoBiggerThan99Number => text.Check_NoBiggerThan99Number(id),
-            ManualId.NoOM => text.Check_NoOM(id),
-            _ => true, // 未定義のIDはチェックしない
+            ManualId.NoKanji => text.Check_NoKanji(),
+            ManualId.NoMuchKutoten => text.Check_NoMuchKutoten(),
+            ManualId.NoContinuousHiragana => text.Check_NoContinuousHiragana(),
+            ManualId.NoEvenNumber => text.Check_NoEvenNumber(),
+            ManualId.NoOddStrokesHiragana => text.Check_NoOddStrokesHiragana(),
+            ManualId.NoSymbol => text.Check_NoSymbol(),
+            ManualId.NoBiggerThan99Number => text.Check_NoBiggerThan99Number(),
+            ManualId.NoOM => text.Check_NoOM(),
+            _ => false,
         };
     }
 }
