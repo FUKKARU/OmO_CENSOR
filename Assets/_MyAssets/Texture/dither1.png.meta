@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      dither1_0: 1441706329621950236
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
