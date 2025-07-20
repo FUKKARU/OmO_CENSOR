@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Kanshikamera_lambert2_Metallic.1001_0: -7697247366157031753
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

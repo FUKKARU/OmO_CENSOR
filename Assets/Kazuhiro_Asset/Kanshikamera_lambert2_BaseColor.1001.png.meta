@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Kanshikamera_lambert2_BaseColor.1001_0: -6223189459955331615
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

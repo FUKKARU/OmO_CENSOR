@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      10126_Traditional_corded_phone_v1_max2009_SG_iterations-2_10126_Traditional_corded_phone_v1_SG_BaseColor.1001_0: 8107210459694928583
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
