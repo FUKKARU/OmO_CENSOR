@@ -1,4 +1,5 @@
-﻿using UnityEngine.Events;
+﻿using TMPro;
+using UnityEngine.Events;
 
 namespace UnityEngine.UI.Extensions
 {
@@ -93,6 +94,10 @@ namespace UnityEngine.UI.Extensions
             PageID = Shader.PropertyToID("_Page");
 			foreach (var g in GetComponentsInChildren<Graphic>(true))
                 g.material = material;
+
+            // 追加：TextMeshProへの対応
+            foreach (var tmp in GetComponentsInChildren<TMP_Text>(true))
+                tmp.fontMaterial = material;
         }
 
         float currentTime = -1;
