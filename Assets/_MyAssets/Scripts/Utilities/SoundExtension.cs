@@ -1,3 +1,5 @@
+#pragma warning disable 0414
+
 using UnityEngine;
 using Scripts.ScriptableObjects;
 
