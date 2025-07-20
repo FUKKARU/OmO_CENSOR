@@ -11,13 +11,16 @@ namespace Scripts.Scenes.Main
         // 正誤判定を行い、どの種流のリザルトに遷移するべきか返す
         public ResultType Judge(string submission)
         {
+            if (string.IsNullOrEmpty(submission))
+                return ResultType.Over;
+
             // 現在の問題数に応じたManualIdを取得
             GetManualIds(ResultState.WhenClearNowLevel, out _manualIds, out _tabooManualIds);
 
-            if (submission.Check(_tabooManualIds) == false)
+            if (_tabooManualIds != null && submission.Check(_tabooManualIds) == false)
                 return ResultType.Death;
 
-            if (submission.Check(_manualIds) == false)
+            if (_manualIds != null && submission.Check(_manualIds) == false)
                 return ResultType.Over;
 
             return ResultType.Clear;
