@@ -1,7 +1,7 @@
 ﻿
 Shader "Transition/Transition_ParlinNoise"
 {
-   Properties
+    Properties
     {
         _MainTex("Texture", 2D) = "white" {}
         [MaterialToggle] _Inverse("Inverse", Float) = 0
@@ -79,13 +79,17 @@ Shader "Transition/Transition_ParlinNoise"
             fixed4 frag(v2f i) : SV_Target
             {
                 float2 st = float2(i.uv.x, i.uv.y * _ScreenParams.y / _ScreenParams.x) * _Size;
+                float t = noise(st, _Seed) * 0.5 + 0.5;
+                float w = max(_Smoothing, 1e-5);
 
-                float sm = _Smoothing;
-                float val = _Value * (1 + sm);
-                float a = smoothstep(val - sm, val, noise(st, _Seed) * 0.5 + 0.5);
+                float a;
+                if (_Smoothing <= 0)
+                    a = step(_Value, t);
+                else
+                    a = saturate((t - (_Value - w)) / (2.0 * w));
 
-                fixed4 col = _Color;
                 float inv = _Inverse;
+                fixed4 col = _Color;
                 col.a = inv - a * (inv * 2.0 - 1.0);
                 return col;
             }
