@@ -7,9 +7,12 @@ namespace Scripts.Scenes.Result
         Death
     }
 
+    // ここの変数を更新してから、リザルトにシーン遷移して！
     public static class ResultState
     {
-        // これを変えてからリザルトにシーン遷移して！
         public static ResultType Type { get; set; } = ResultType.Clear;
+
+        public static int MaxLevel = 5; // [1,5]
+        public static int WhenClearNowLevel = 1;  // [1,5]
     }
 }
