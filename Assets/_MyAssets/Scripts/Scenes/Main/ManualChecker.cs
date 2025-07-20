@@ -14,12 +14,13 @@ namespace Scripts.Scenes.Main
             // 現在の問題数に応じたManualIdを取得
             GetManualIds(ResultState.WhenClearNowLevel, out _manualIds, out _tabooManualIds);
 
-            return 0 switch
-            {
-                _ when submission.Check(_tabooManualIds) == false => ResultType.Death,
-                _ when submission.Check(_manualIds) == false => ResultType.Over,
-                _ => ResultType.Clear,
-            };
+            if (submission.Check(_tabooManualIds) == false)
+                return ResultType.Death;
+
+            if (submission.Check(_manualIds) == false)
+                return ResultType.Over;
+
+            return ResultType.Clear;
         }
 
         private void GetManualIds(int nowLevel, out ManualId[] manualIds, out ManualId[] tabooManualIds) => (manualIds, tabooManualIds) = nowLevel switch
