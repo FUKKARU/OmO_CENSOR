@@ -31,7 +31,7 @@ public class Censorship : MonoBehaviour
     private const float fixedZ = 0;
 
     // 残された文字
-    string remainingText;
+    string remainingText = string.Empty;
     public string RemainingText => remainingText;
 
     // 検閲された文字
@@ -50,10 +50,10 @@ public class Censorship : MonoBehaviour
     void Update()
     {
         HandleDrawingInput();
-        
+
     }
 
-    
+
     private void SetTargetText()
     {
         targetText.text = SQuestionData.Entity.Get(ResultState.WhenClearNowLevel);
