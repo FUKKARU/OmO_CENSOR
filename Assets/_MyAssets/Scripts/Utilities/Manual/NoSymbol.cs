@@ -4,7 +4,7 @@ namespace Scripts.Utilities
 {
     public static partial class ManualChecker
     {
-#if true
+#if false // テスト用
         [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Test_Check_NoSymbol()
         {
