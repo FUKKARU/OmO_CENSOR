@@ -7,17 +7,22 @@ public class Censorship : MonoBehaviour
 {
     [Header("Text & Drawing")]
     [SerializeField] private TextMeshProUGUI targetText;
-    [SerializeField] private LineRenderer lineRendererPrefab; // プレハブ
+    [SerializeField] private LineRenderer lineRendererPrefab;
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private float thresholdRadius = 0.1f;
 
     private List<Rect> characterBounds = new();
+    private List<int> characterRealIndices = new(); // 実テキストのインデックス
     private List<CensoredRange> censoredRanges = new();
+    private HashSet<int> censoredIndices = new();  // 実テキストインデックスの記録
 
-    private List<LineRenderer> drawnLines = new();        // すべての線
-    private LineRenderer currentLine;                     // 今描いてる線
-    private List<Vector3> currentLinePoints = new();      // 今の線の点列
+    private List<LineRenderer> drawnLines = new();
+    private LineRenderer currentLine;
+    private List<Vector3> currentLinePoints = new();
 
-    private void Start()
+    private const float fixedZ = 90f;
+
+    void Start()
     {
         if (mainCamera == null)
             mainCamera = Camera.main;
@@ -25,7 +30,7 @@ public class Censorship : MonoBehaviour
         CacheCharacterBounds();
     }
 
-    private void Update()
+    void Update()
     {
         HandleDrawingInput();
     }
@@ -34,7 +39,6 @@ public class Censorship : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            // 新しい線を生成
             currentLine = Instantiate(lineRendererPrefab, transform);
             currentLine.positionCount = 0;
             currentLinePoints.Clear();
@@ -44,7 +48,7 @@ public class Censorship : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorldPos.z = 0;
+            mouseWorldPos.z = fixedZ;
 
             if (currentLinePoints.Count == 0 || Vector3.Distance(mouseWorldPos, currentLinePoints[^1]) > 0.01f)
             {
@@ -63,30 +67,22 @@ public class Censorship : MonoBehaviour
     private void CacheCharacterBounds()
     {
         targetText.ForceMeshUpdate();
-        TMP_TextInfo textInfo = targetText.textInfo;
+        var textInfo = targetText.textInfo;
 
         characterBounds.Clear();
-
-        Canvas canvas = targetText.canvas;
-        Camera cam = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
+        characterRealIndices.Clear();
 
         for (int i = 0; i < textInfo.characterCount; i++)
         {
-            TMP_CharacterInfo charInfo = textInfo.characterInfo[i];
+            var charInfo = textInfo.characterInfo[i];
             if (!charInfo.isVisible) continue;
 
-            Vector3 bl = charInfo.bottomLeft;
-            Vector3 tr = charInfo.topRight;
+            Vector3 bl = targetText.transform.TransformPoint(charInfo.bottomLeft);
+            Vector3 tr = targetText.transform.TransformPoint(charInfo.topRight);
+            bl.z = tr.z = fixedZ;
 
-            // ローカル→スクリーン→ワールド変換
-            Vector3 screenBL = RectTransformUtility.WorldToScreenPoint(cam, targetText.transform.TransformPoint(bl));
-            Vector3 screenTR = RectTransformUtility.WorldToScreenPoint(cam, targetText.transform.TransformPoint(tr));
-
-            Vector3 worldBL = mainCamera.ScreenToWorldPoint(new Vector3(screenBL.x, screenBL.y, mainCamera.nearClipPlane));
-            Vector3 worldTR = mainCamera.ScreenToWorldPoint(new Vector3(screenTR.x, screenTR.y, mainCamera.nearClipPlane));
-
-            Rect rect = new Rect(worldBL, worldTR - worldBL);
-            characterBounds.Add(rect);
+            characterBounds.Add(new Rect(bl, tr - bl));
+            characterRealIndices.Add(charInfo.index); // テキスト内の実インデックスを保存
         }
     }
 
@@ -96,68 +92,73 @@ public class Censorship : MonoBehaviour
         {
             Vector3 start = linePoints[i];
             Vector3 end = linePoints[i + 1];
-
             CheckLineSegmentAgainstCharacters(start, end);
         }
     }
 
     private void CheckLineSegmentAgainstCharacters(Vector3 start, Vector3 end)
     {
-        for (int i = 0; i < characterBounds.Count; i++)
+        Vector3 dir = end - start;
+        float len = dir.magnitude;
+        if (len == 0f) return;
+
+        Vector3 norm = dir / len;
+        int steps = Mathf.CeilToInt(len / 0.01f);
+
+        for (int step = 0; step <= steps; step++)
         {
-            if (LineIntersectsRect(start, end, characterBounds[i]))
+            Vector3 point = start + norm * (len * step / steps);
+            point.z = fixedZ;
+
+            for (int i = 0; i < characterBounds.Count; i++)
             {
-                AddToCensoredList(i, targetText.text[i].ToString());
+                Vector3 center = new Vector3(characterBounds[i].center.x, characterBounds[i].center.y, fixedZ);
+                if (Vector3.Distance(center, point) < thresholdRadius)
+                {
+                    int realIndex = characterRealIndices[i];
+                    AddToCensoredList(realIndex);
+                }
             }
         }
     }
 
-    private void AddToCensoredList(int index, string word)
+    private void AddToCensoredList(int realIndex)
     {
-        if (censoredRanges.Exists(r => r.startIndex == index)) return;
+        if (censoredIndices.Contains(realIndex)) return;
 
-        censoredRanges.Add(new CensoredRange(index, 1, word));
+        string ch = targetText.text[realIndex].ToString();
+        censoredRanges.Add(new CensoredRange(realIndex, 1, ch));
+        censoredIndices.Add(realIndex);
+
         ApplyCensorship();
     }
 
     private void ApplyCensorship()
     {
-        // インデックス順に並べる
-        censoredRanges.Sort((a, b) => a.startIndex.CompareTo(b.startIndex));
-
-        List<string> censoredWords = new();
-        foreach (var range in censoredRanges)
+        if (censoredRanges.Count == 0)
         {
-            censoredWords.Add($"\"{range.originalWord}\" at index {range.startIndex}");
+            Debug.Log("現在、検閲された文字はありません。");
+            return;
         }
 
-        CacheCharacterBounds(); // 再取得
-        Debug.Log("Censored characters (sorted): " + string.Join(", ", censoredWords));
+        censoredRanges.Sort((a, b) => a.startIndex.CompareTo(b.startIndex));
+        string result = string.Concat(censoredRanges.ConvertAll(r => r.originalWord));
+        Debug.Log($"塗りつぶされた文字: 「{result}」");
+
+        CacheCharacterBounds(); // 再取得（位置ずれ対応）
     }
 
-    private bool LineIntersectsRect(Vector2 p1, Vector2 p2, Rect rect)
+    private void OnDrawGizmos()
     {
-        Vector2 topLeft = new(rect.xMin, rect.yMax);
-        Vector2 topRight = new(rect.xMax, rect.yMax);
-        Vector2 bottomLeft = new(rect.xMin, rect.yMin);
-        Vector2 bottomRight = new(rect.xMax, rect.yMin);
+        if (characterBounds == null || characterBounds.Count == 0) return;
 
-        return
-            LinesIntersect(p1, p2, topLeft, topRight) ||
-            LinesIntersect(p1, p2, topRight, bottomRight) ||
-            LinesIntersect(p1, p2, bottomRight, bottomLeft) ||
-            LinesIntersect(p1, p2, bottomLeft, topLeft);
-    }
-
-    private bool LinesIntersect(Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
-    {
-        float d = (a2.x - a1.x) * (b2.y - b1.y) - (a2.y - a1.y) * (b2.x - b1.x);
-        if (Mathf.Approximately(d, 0)) return false;
-
-        float u = ((b1.x - a1.x) * (b2.y - b1.y) - (b1.y - a1.y) * (b2.x - b1.x)) / d;
-        float v = ((b1.x - a1.x) * (a2.y - a1.y) - (b1.y - a1.y) * (a2.x - a1.x)) / d;
-
-        return (u >= 0 && u <= 1) && (v >= 0 && v <= 1);
+        for (int i = 0; i < characterBounds.Count; i++)
+        {
+            Vector3 center = characterBounds[i].center;
+            center.z = fixedZ;
+            Gizmos.color = censoredIndices.Contains(characterRealIndices[i]) ? new Color(1, 0, 0, 0.4f) : new Color(0, 1, 0, 0.2f);
+            Gizmos.DrawSphere(center, thresholdRadius);
+        }
     }
 }
 
