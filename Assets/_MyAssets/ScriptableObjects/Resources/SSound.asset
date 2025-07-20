@@ -16,7 +16,7 @@ MonoBehaviour:
   _AMGroupBGM: {fileID: 5903218325060628114, guid: 2644194b5c5484828a7a03475a0489cb, type: 2}
   _AMGroupSE: {fileID: 1653031143762423998, guid: 2644194b5c5484828a7a03475a0489cb, type: 2}
   _AMGroupMaster: {fileID: 24300002, guid: 2644194b5c5484828a7a03475a0489cb, type: 2}
-  _titleBGM: {fileID: 0}
+  _titleBGM: {fileID: 8300000, guid: 459637fc260ae42f8990179924e32d68, type: 3}
   _mainBGM: {fileID: 0}
   _clickSE: {fileID: 8300000, guid: 6f086c19390662949a6a2ca561e626fa, type: 3}
   _hoverSE: {fileID: 8300000, guid: 363c2b5878d87de4887ca5640798f886, type: 3}
