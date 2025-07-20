@@ -10,7 +10,7 @@ namespace Scripts.Utilities.Buttons
     /// 見た目の変化などは、基本的にこのクラス内で行う
     /// Awakeを使用
     /// </summary>
-    internal abstract class ASimpleButtonManager : MonoBehaviour, IButton
+    public abstract class ASimpleButtonManager : MonoBehaviour, IButton
     {
         [SerializeField] private EventTrigger eventTrigger;
         [SerializeField] private SpriteRenderer image;

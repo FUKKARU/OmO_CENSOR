@@ -2,7 +2,7 @@ using UnityEngine.EventSystems;
 
 namespace Scripts.Utilities.Buttons
 {
-    internal interface IButton
+    public interface IButton
     {
         void OnEnter(PointerEventData data);
         void OnExit(PointerEventData data);
