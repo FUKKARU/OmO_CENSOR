@@ -119,51 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &921697204
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 921697205}
-  - component: {fileID: 921697206}
-  m_Layer: 0
-  m_Name: SAMPLE_GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &921697205
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 921697204}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &921697206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 921697204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a7b08beb4f4b4dc2918769e0bad2abf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startButton: {fileID: 0}
 --- !u!1 &964211658
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +481,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3132143102112447797, guid: 1e6a50e41b0a04fa2af70bf1da6c8e7f, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3132143102112447797, guid: 1e6a50e41b0a04fa2af70bf1da6c8e7f, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3132143102112447797, guid: 1e6a50e41b0a04fa2af70bf1da6c8e7f, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3132143102112447797, guid: 1e6a50e41b0a04fa2af70bf1da6c8e7f, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4293059298
+      objectReference: {fileID: 0}
     - target: {fileID: 5450912019143366247, guid: 1e6a50e41b0a04fa2af70bf1da6c8e7f, type: 3}
       propertyPath: m_Name
       value: TextButton
@@ -545,13 +516,87 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5450912019143366247, guid: 1e6a50e41b0a04fa2af70bf1da6c8e7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2061180675}
   m_SourcePrefab: {fileID: 100100000, guid: 1e6a50e41b0a04fa2af70bf1da6c8e7f, type: 3}
 --- !u!224 &2061180673 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2955792959565148518, guid: 1e6a50e41b0a04fa2af70bf1da6c8e7f, type: 3}
   m_PrefabInstance: {fileID: 2061180672}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2061180674 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5450912019143366247, guid: 1e6a50e41b0a04fa2af70bf1da6c8e7f, type: 3}
+  m_PrefabInstance: {fileID: 2061180672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2061180675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061180674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e515c9cfc236945ccab385be300d14cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventTrigger: {fileID: 2061180678}
+  backgroundImage: {fileID: 2061180679}
+  text: {fileID: 2061180676}
+  seAudioSource: {fileID: 2061180677}
+  displayText: "\u30B9\u30BF\u30FC\u30C8"
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 0.13333334, g: 1, b: 0, a: 1}
+  bgChangeInterval: {x: 5, y: 15}
+  bgChangeIntervalWhenCleared: {x: 2, y: 5}
+  bgChangingDuration: {x: 1, y: 2}
+  bgChangingDurationWhenCleared: {x: 120, y: 600}
+  bgNormal: {fileID: 21300000, guid: 6a939f4e78eb8496f9077ddfe8ef5fa0, type: 3}
+  bgNormalDanger: {fileID: 21300000, guid: a159ebe5c4d9047d681eed12bff578ec, type: 3}
+  bgCleared: {fileID: 21300000, guid: 18ba524d09af545a4ba2e75857a75245, type: 3}
+  bgClearedDanger: {fileID: 21300000, guid: f46662405206e4b9481d0937edc5c1b3, type: 3}
+  bg: {fileID: 2111064392}
+--- !u!114 &2061180676 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3132143102112447797, guid: 1e6a50e41b0a04fa2af70bf1da6c8e7f, type: 3}
+  m_PrefabInstance: {fileID: 2061180672}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &2061180677 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8138682191155006436, guid: 1e6a50e41b0a04fa2af70bf1da6c8e7f, type: 3}
+  m_PrefabInstance: {fileID: 2061180672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2061180678 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6919046184612073767, guid: 1e6a50e41b0a04fa2af70bf1da6c8e7f, type: 3}
+  m_PrefabInstance: {fileID: 2061180672}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2061180679 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7459841864508909512, guid: 1e6a50e41b0a04fa2af70bf1da6c8e7f, type: 3}
+  m_PrefabInstance: {fileID: 2061180672}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2111064390
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,4 +679,3 @@ SceneRoots:
   - {fileID: 1188773180}
   - {fileID: 1015461713}
   - {fileID: 964211662}
-  - {fileID: 921697205}

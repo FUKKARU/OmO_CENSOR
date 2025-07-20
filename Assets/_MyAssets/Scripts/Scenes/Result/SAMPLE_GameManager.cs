@@ -28,6 +28,9 @@ namespace Scripts.Scenes.Result
                             whenOverRetryButton.gameObject.SetActive(false);
                             whenDeathBackButton.gameObject.SetActive(false);
                             whenClearClearButton.onClick.AddListener(() => SceneId.Title.LoadAsync());
+
+                            SaveDataHolder.Data.HasCleared |= true;
+                            SaveDataHolder.Save();
                         }
                         else
                         {
