@@ -13,14 +13,16 @@ public class SubmitButtonManager : MonoBehaviour
     {
         btn.onClick.AddListener(() =>
         {
-            GoToResultScene(manualChecker.Judge(censorship.RemainingText.Replace("□", "")));
+            string text = censorship.RemainingText;
+            if (!string.IsNullOrEmpty(text))
+                text = text.Replace("□", "").Replace("\r\n", "").Replace("\n", "").Trim();
+            GoToResultScene(manualChecker.Judge(text));
         });
     }
 
     private void GoToResultScene(ResultType resultType)
     {
         ResultState.Type = resultType;
-        Debug.Log(resultType);
         {
             if (resultType == ResultType.Clear)
                 ResultState.WhenClearNowLevel++; // クリアしたら次のステージへ

@@ -11,7 +11,7 @@ namespace Scripts.Scenes.Main
         // 正誤判定を行い、どの種流のリザルトに遷移するべきか返す
         public ResultType Judge(string submission)
         {
-            if (string.IsNullOrEmpty(submission))
+            if (submission == null)
                 return ResultType.Over;
 
             // 現在の問題数に応じたManualIdを取得
