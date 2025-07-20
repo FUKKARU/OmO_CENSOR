@@ -1450,6 +1450,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5133098973024509898, guid: 28056b33ef8a09f479270d5a53a6061b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: abe35edfa6f1ca94aa2bba355d6563e9, type: 2}
     - target: {fileID: 6302579378900673701, guid: 28056b33ef8a09f479270d5a53a6061b, type: 3}
       propertyPath: m_LocalScale.x
       value: 100
@@ -2114,6 +2118,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 945565598}
     m_Modifications:
+    - target: {fileID: 4668266878783524727, guid: 020e4a93d2d786f47a17d1bf5f0a2764, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 02ee90bd1a7d83443b9a39a8e7329a5b, type: 2}
     - target: {fileID: 7967570705067173240, guid: 020e4a93d2d786f47a17d1bf5f0a2764, type: 3}
       propertyPath: m_Name
       value: Transition_Crystal
