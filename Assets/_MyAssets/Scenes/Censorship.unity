@@ -933,7 +933,7 @@ MonoBehaviour:
   targetText: {fileID: 933981666}
   lineRendererPrefab: {fileID: 5065897414958138986, guid: 58212f896f6db462ab0e9f805d4c938e, type: 3}
   mainCamera: {fileID: 532118599}
-  thresholdRadius: 0.1
+  thresholdRadius: 0.15
 --- !u!4 &1953302816
 Transform:
   m_ObjectHideFlags: 0
