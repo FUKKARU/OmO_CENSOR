@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Scripts.ScriptableObjects;
+using Scripts.Scenes.Result;
 
 public class Censorship : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class Censorship : MonoBehaviour
             mainCamera = Camera.main;
 
         CacheCharacterBounds();
+        SetTargetText();
     }
 
     void Update()
@@ -52,9 +54,9 @@ public class Censorship : MonoBehaviour
     }
 
     
-    private void SetTargetText(int i)
+    private void SetTargetText()
     {
-        targetText.text = SQuestionData.Entity.Get(i);
+        targetText.text = SQuestionData.Entity.Get(ResultState.WhenClearNowLevel);
     }
 
     private void HandleDrawingInput()
