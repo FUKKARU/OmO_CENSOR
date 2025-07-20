@@ -4,6 +4,7 @@ Shader "Transition/Transition_ParlinNoise"
     Properties
     {
         _MainTex("Texture", 2D) = "white" {}
+        [MaterialToggle] _UseTexture("Use Texture", Float) = 0
         [MaterialToggle] _Inverse("Inverse", Float) = 0
         _Color("Color", Color) = (1, 1, 1, 1)
         _Size("Size", Float) = 0
@@ -25,17 +26,8 @@ Shader "Transition/Transition_ParlinNoise"
 
             #include "UnityCG.cginc"
 
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
-            };
-
-            struct v2f
-            {
-                float2 uv : TEXCOORD0;
-                float4 vertex : SV_POSITION;
-            };
+            struct appdata { float4 vertex : POSITION; float2 uv : TEXCOORD0; };
+            struct v2f { float2 uv : TEXCOORD0; float4 vertex : SV_POSITION; };
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
@@ -46,6 +38,7 @@ Shader "Transition/Transition_ParlinNoise"
             float _Value;
             float _Smoothing;
             float _Inverse;
+            float _UseTexture;
 
             float2 rand(float2 st, int seed)
             {
@@ -89,8 +82,10 @@ Shader "Transition/Transition_ParlinNoise"
                     a = saturate((t - (_Value - w)) / (2.0 * w));
 
                 float inv = _Inverse;
-                fixed4 col = _Color;
-                col.a = inv - a * (inv * 2.0 - 1.0);
+
+                fixed4 texCol = tex2D(_MainTex, i.uv);
+                fixed4 col = lerp(_Color, texCol, _UseTexture);
+                col.a *= inv - a * (inv * 2.0 - 1.0);
                 return col;
             }
             ENDCG
