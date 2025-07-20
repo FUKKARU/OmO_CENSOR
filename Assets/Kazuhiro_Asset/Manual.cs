@@ -3,10 +3,35 @@ using TMPro;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
+
 public class Manual : MonoBehaviour
 {
-    [Header("対象のTextMeshPro UI")]
     [SerializeField] private TMP_Text targetText;
+
+
+
+    [Header("切り替え候補の文章一覧")]
+    [TextArea]
+    [SerializeField] private List<string> messages = new List<string>();
+
+    /// <summary>
+    /// ボタンから呼び出してランダムな文章を表示
+    /// </summary>
+    public void ShowRandomMessage()
+    {
+        if (messages.Count == 0)
+        {
+            Debug.LogWarning("文章リストが空です！");
+            return;
+        }
+
+        int index = Random.Range(0, messages.Count);
+        string selected = messages[index];
+
+        targetText.text = selected;
+        Debug.Log($"ランダム文章切り替え: {selected}");
+    }
+
 
     public float CalculateKanjiAccuracy(string fullText, string detectedText)
     {
@@ -52,32 +77,6 @@ public class Manual : MonoBehaviour
     {
         return System.Text.RegularExpressions.Regex.IsMatch(c.ToString(), @"\p{IsCJKUnifiedIdeographs}");
     }
-
-    //public List<char> ExtractKanjiFromTMP()
-    //{
-    //    string input = targetText.text;
-    //    List<char> kanjiList = new List<char>();
-
-    //    foreach (char c in input)
-    //    {
-    //        if (Regex.IsMatch(c.ToString(), @"\p{IsCJKUnifiedIdeographs}"))
-    //        {
-    //            kanjiList.Add(c);
-    //            Debug.Log($"漢字発見：{c}");
-    //        }
-    //    }
-
-    //    if (kanjiList.Count == 0)
-    //    {
-    //        Debug.Log("漢字は見つかりませんでした！");
-    //    }
-    //    else
-    //    {
-    //        Debug.Log($"漢字抽出完了：{kanjiList.Count}文字");
-    //    }
-
-    //    return kanjiList;
-    //}
 
 
 
