@@ -3,11 +3,14 @@ using TMPro;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-public class Manual : MonoBehaviour
+
+public class KanjiBanRule : MonoBehaviour
 {
-    [Header("対象のTextMeshPro UI")]
     [SerializeField] private TMP_Text targetText;
 
+    /// <summary>
+    /// ボタンから呼び出してランダムな文章を表示
+    /// </summary>
     public float CalculateKanjiAccuracy(string fullText, string detectedText)
     {
         // 元文章の漢字カウント

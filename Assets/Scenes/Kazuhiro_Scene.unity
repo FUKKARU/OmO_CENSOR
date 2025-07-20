@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 98914027}
   - component: {fileID: 98914026}
+  - component: {fileID: 98914028}
   m_Layer: 0
   m_Name: ManualManager
   m_TagString: Untagged
@@ -164,6 +165,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &98914028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98914025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f9d9addda4b379498fe5d63e919ea0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetText: {fileID: 933981666}
 --- !u!1 &532118597
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,7 +669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e983d057b55f7b64f80bbe25c64701e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanner: {fileID: 98914026}
+  scanner: {fileID: 98914028}
   manualText: {fileID: 933981666}
   detectedString: "\u6D78\u900F\u6587\u7AE0\u6587"
 --- !u!114 &1734563150
