@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Scripts.ScriptableObjects;
 
 public class Censorship : MonoBehaviour
 {
     [Header("Text & Drawing")]
     [SerializeField] private TextMeshProUGUI targetText;
+
     [SerializeField] private LineRenderer lineRendererPrefab;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float thresholdRadius = 0.1f;
@@ -47,6 +49,12 @@ public class Censorship : MonoBehaviour
     {
         HandleDrawingInput();
         
+    }
+
+    
+    private void SetTargetText(int i)
+    {
+        targetText.text = SQuestionData.Entity.Get(i);
     }
 
     private void HandleDrawingInput()
