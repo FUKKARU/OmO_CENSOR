@@ -4,23 +4,23 @@ namespace Scripts.Utilities
 {
     public abstract class AResourcesScriptableObject<T> : ScriptableObject where T : AResourcesScriptableObject<T>
     {
-        private static T _instance = null;
+        private static T _entity = null;
 
-        public static T Instance
+        public static T Entity
         {
             get
             {
-                if (_instance == null)
+                if (_entity == null)
                 {
-                    _instance = Resources.Load<T>(typeof(T).Name);
+                    _entity = Resources.Load<T>(typeof(T).Name);
 
-                    if (_instance == null)
+                    if (_entity == null)
                     {
                         $"No instance of {typeof(T).Name} found in Resources. Please ensure it exists.".LogError();
                     }
                 }
 
-                return _instance;
+                return _entity;
             }
         }
     }
