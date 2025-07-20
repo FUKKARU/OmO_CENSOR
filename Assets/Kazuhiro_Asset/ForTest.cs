@@ -7,11 +7,17 @@ using System.Text.RegularExpressions;
 public class ForTest : MonoBehaviour
 {
     [SerializeField] Manual scanner;
-
-    public void OnCheckButton()
+    [SerializeField] TMP_Text manualText;
+    [SerializeField] string detectedString;
+    void Start()
     {
-        List<char> foundKanji = scanner.ExtractKanjiFromTMP();
-        // •K—v‚È‚çˆ—‚Ö“n‚·EUI‚É”½‰f‚È‚Ç
+        //List<char> foundKanji = scanner.ExtractKanjiFromTMP();
+        string fullText = manualText.text;
+        string detected = detectedString; // ŒŸ‰{‚ÅE‚Á‚½•¶š
+
+        float accuracy = scanner.CalculateKanjiAccuracy(fullText, detected);
+        Debug.Log($"ÀŒ±Œ‹‰ÊF³“š—¦‚Í {accuracy * 100:0.0}%");
+
     }
 
 }
