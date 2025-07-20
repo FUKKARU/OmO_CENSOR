@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 public class ForTest : MonoBehaviour
 {
-    [SerializeField] Manual scanner;
+    [SerializeField] KanjiBanRule scanner;
     [SerializeField] TMP_Text manualText;
     [SerializeField] string detectedString;
     void Start()
