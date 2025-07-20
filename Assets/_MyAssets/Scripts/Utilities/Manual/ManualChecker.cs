@@ -19,8 +19,8 @@ namespace Scripts.Utilities
         // textに対して指定されたManualIdのチェックを行う(複数)
         public static bool Check(this string text, ManualId[] ids)
         {
-            if (string.IsNullOrEmpty(text)) return false;
-            if (ids == null || ids.Length == 0) return false;
+            if (string.IsNullOrEmpty(text)) return true;
+            if (ids == null || ids.Length == 0) return true;
 
             foreach (ManualId id in ids)
             {
@@ -41,7 +41,7 @@ namespace Scripts.Utilities
             ManualId.NoSymbol => text.Check_NoSymbol(),
             ManualId.NoBiggerThan99Number => text.Check_NoBiggerThan99Number(),
             ManualId.NoOM => text.Check_NoOM(),
-            _ => false,
+            _ => true,
         };
     }
 }

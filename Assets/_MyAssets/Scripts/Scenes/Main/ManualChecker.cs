@@ -17,10 +17,10 @@ namespace Scripts.Scenes.Main
             // 現在の問題数に応じたManualIdを取得
             GetManualIds(ResultState.WhenClearNowLevel, out _manualIds, out _tabooManualIds);
 
-            if (_tabooManualIds != null && submission.Check(_tabooManualIds) == false)
+            if (submission.Check(_tabooManualIds) == false)
                 return ResultType.Death;
 
-            if (_manualIds != null && submission.Check(_manualIds) == false)
+            if (submission.Check(_manualIds) == false)
                 return ResultType.Over;
 
             return ResultType.Clear;
@@ -28,12 +28,12 @@ namespace Scripts.Scenes.Main
 
         private void GetManualIds(int nowLevel, out ManualId[] manualIds, out ManualId[] tabooManualIds) => (manualIds, tabooManualIds) = nowLevel switch
         {
-            1 => (new ManualId[] { ManualId.NoKanji }, null),
-            2 => (new ManualId[] { ManualId.NoMuchKutoten, ManualId.NoContinuousHiragana }, null),
+            1 => (new ManualId[] { ManualId.NoKanji }, new ManualId[] { }),
+            2 => (new ManualId[] { ManualId.NoMuchKutoten, ManualId.NoContinuousHiragana }, new ManualId[] { }),
             3 => (new ManualId[] { ManualId.NoEvenNumber, ManualId.NoOddStrokesHiragana }, new ManualId[] { ManualId.NoBiggerThan99Number }),
             4 => (new ManualId[] { ManualId.NoMuchKutoten, ManualId.NoContinuousHiragana, ManualId.NoSymbol }, new ManualId[] { ManualId.NoBiggerThan99Number }),
             5 => (new ManualId[] { ManualId.NoMuchKutoten, ManualId.NoEvenNumber, ManualId.NoOddStrokesHiragana, ManualId.NoSymbol }, new ManualId[] { ManualId.NoBiggerThan99Number, ManualId.NoOM }),
-            _ => (null, null),
+            _ => (new ManualId[] { }, new ManualId[] { }),
         };
     }
 }
