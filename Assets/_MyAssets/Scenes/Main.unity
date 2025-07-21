@@ -891,7 +891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1225,7 +1225,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555969296}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1258,7 +1258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3614,12 +3614,12 @@ MonoBehaviour:
   lineRendererPrefab: {fileID: 5065897414958138986, guid: 58212f896f6db462ab0e9f805d4c938e, type: 3}
   mainCamera: {fileID: 532118599}
   thresholdRadius: 0.15
-  maxInk: 1000
-  ink: 1000
+  maxInk: 250
+  ink: 250
   useInk: 1.5
   fillInk: {fileID: 297480742}
-  screenDrawMin: {x: 100, y: 100}
-  screenDrawMax: {x: 1000, y: 800}
+  screenDrawMin: {x: 625, y: 100}
+  screenDrawMax: {x: 1200, y: 800}
   book: {fileID: 1587810768}
   bookTextA: {fileID: 555969299}
   bookTextB: {fileID: 376218703}
