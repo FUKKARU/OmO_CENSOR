@@ -25,7 +25,16 @@ public class SubmitButtonManager : MonoBehaviour
         ResultState.Type = resultType;
         {
             if (resultType == ResultType.Clear)
-                ResultState.WhenClearNowLevel++; // クリアしたら次のステージへ
+            {
+                if (ResultState.WhenClearNowLevel >= 5)
+                {
+                    ResultState.WhenClearNowLevel = 1; // 出世したら、タイトルへ
+                }
+                else
+                {
+                    ResultState.WhenClearNowLevel++; // クリアしたら次のステージへ                    
+                }
+            }
             else if (resultType == ResultType.Over) { } // オーバーしたらそのステージをもう一度
             else
                 ResultState.WhenClearNowLevel = 1; // 磔になったら終わり、タイトルへ

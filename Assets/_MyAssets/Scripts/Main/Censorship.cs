@@ -199,11 +199,12 @@ public class Censorship : MonoBehaviour
             for (int i = r.startIndex; i < r.startIndex + r.length; i++)
             {
                 if (i >= 0 && i < remainingChars.Length)
-                    remainingChars[i] = '□'; // マスキング記号
+                    remainingChars[i] = '■'; // マスキング記号
             }
         }
 
         remainingText = new string(remainingChars);
+        targetText.text = remainingText;
 
         Debug.Log($"■ 検閲された文字: 「{censoredChars}」");
         Debug.Log($"■ 残された文字列: 「{remainingText}」");
