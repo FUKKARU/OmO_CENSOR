@@ -12,6 +12,6 @@ namespace Scripts.Utilities
         }
 #endif
         public static bool Check_NoKanji(this string text)
-            => Regex.IsMatch(text, @"[\u4E00-\u9FFF\u3400-\u4DBF]");
+            => !Regex.IsMatch(text, @"[\u4E00-\u9FFF\u3400-\u4DBF]");
     }
 }
