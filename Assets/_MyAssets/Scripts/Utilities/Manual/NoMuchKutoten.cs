@@ -17,20 +17,46 @@ namespace Scripts.Utilities
 
         public static bool Check_NoMuchKutoten(this string text)
         {
-            int count = 0;
+            // 1文の中に句読点が3つ以上含まれていたらアウト
+            // 1文は、「。」「！」「？」「!」「?」のいずれかで囲まれている部分
 
-            foreach (char c in text)
+            for (int i = 0; i < text.Length; i++)
             {
-                if (c == '、' || c == '。')
+                char begin = text[i];
+                if (begin is not ('。' or '！' or '？' or '!' or '?'))
+                    continue; // 文の始まりではない
+
+                for (int j = i + 1; j < text.Length; j++)
                 {
-                    count++;
-                    if (count >= 3) return false; // 句読点が3つ以上 → 違反
+                    char end = text[j];
+                    if (end is not ('。' or '！' or '？' or '!' or '?'))
+                        continue; // 文の終わりではない
+
+                    // 文が見つかった
+                    string sentence = text.Substring(i, j - i + 1);
+                    int cnt = CountTouten(sentence);
+
+                    if (cnt >= 3)
+                        return false; // 句読点が多すぎる
+                    break; // 次の文を探す
                 }
             }
 
-            return true; // 句読点が2つ以下 → 許容
+            return true; // 句読点が少ないか、文が見つからなかった
+
+
+
+            // 「、」「,」の数をカウントする
+            static int CountTouten(string text)
+            {
+                int count = 0;
+                foreach (char c in text)
+                {
+                    if (c is ('、' or ','))
+                        count++;
+                }
+                return count;
+            }
         }
-
-
     }
 }
