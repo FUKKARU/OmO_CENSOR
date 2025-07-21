@@ -58,7 +58,7 @@ public class Censorship : MonoBehaviour
     {
         HandleDrawingInput();
 
-        if (book.CurrentPage == 0 || book.CurrentPage == 6)
+        if (book.CurrentPage <= 0 || book.CurrentPage >= 4)
         {
             pageText.text = string.Empty;
             bookTextA.text = string.Empty;
@@ -84,7 +84,7 @@ public class Censorship : MonoBehaviour
                     bookTextB.text = string.Empty;
                     break;
             }
-            pageText.text = $"{book.CurrentPage}/5ページ";
+            pageText.text = $"{book.CurrentPage}/3ページ";
         }
     }
 
