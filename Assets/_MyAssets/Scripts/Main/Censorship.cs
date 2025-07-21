@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Scripts.ScriptableObjects;
 using Scripts.Scenes.Result;
+using UnityEngine.UI.Extensions;
 
 public class Censorship : MonoBehaviour
 {
@@ -18,6 +19,12 @@ public class Censorship : MonoBehaviour
     [SerializeField] private float ink = 100f;
     [SerializeField] private float useInk = 0.1f;
     [SerializeField] private Image fillInk;
+    [SerializeField] private Vector2 screenDrawMin = new Vector2(100, 100);
+    [SerializeField] private Vector2 screenDrawMax = new Vector2(1000, 800);
+    [SerializeField] private BookUI book;
+    [SerializeField] private TextMeshProUGUI bookTextA;
+    [SerializeField] private TextMeshProUGUI bookTextB;
+    [SerializeField] private TextMeshProUGUI pageText;
 
     private List<Rect> characterBounds = new();
     private List<int> characterRealIndices = new(); // 実テキストのインデックス
@@ -51,6 +58,34 @@ public class Censorship : MonoBehaviour
     {
         HandleDrawingInput();
 
+        if (book.CurrentPage == 0 || book.CurrentPage == 6)
+        {
+            pageText.text = string.Empty;
+            bookTextA.text = string.Empty;
+            bookTextB.text = string.Empty;
+        }
+        else
+        {
+            switch (book.CurrentPage)
+            {
+                case 1:
+                    bookTextA.text = SManualData.Entity.Get(2);
+                    bookTextB.text = SManualData.Entity.Get(1);
+                    break;
+                case 2:
+                    bookTextA.text = SManualData.Entity.Get(4);
+                    bookTextB.text = SManualData.Entity.Get(3);
+                    break;
+                case 3:
+                    bookTextA.text = SManualData.Entity.Get(5);
+                    break;
+                default:
+                    bookTextA.text = string.Empty;
+                    bookTextB.text = string.Empty;
+                    break;
+            }
+            pageText.text = $"{book.CurrentPage}/5ページ";
+        }
     }
 
 
@@ -71,7 +106,16 @@ public class Censorship : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 screenPos = Input.mousePosition;
+
+            // 範囲外なら描画しない
+            if (screenPos.x < screenDrawMin.x || screenPos.x > screenDrawMax.x ||
+                screenPos.y < screenDrawMin.y || screenPos.y > screenDrawMax.y)
+            {
+                return;
+            }
+
+            Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(screenPos);
             mouseWorldPos.z = fixedZ;
 
             if (currentLinePoints.Count == 0 || Vector3.Distance(mouseWorldPos, currentLinePoints[^1]) > 0.01f)
@@ -82,7 +126,6 @@ public class Censorship : MonoBehaviour
                     distance = Vector3.Distance(mouseWorldPos, currentLinePoints[^1]);
                 }
 
-                // インクを距離に応じて減らす
                 float inkToUse = distance * useInk;
                 if (ink >= inkToUse)
                 {
