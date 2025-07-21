@@ -34,10 +34,10 @@ namespace Scripts.Scenes.Main
         private void GetManualIds(int nowLevel, out ManualId[] manualIds, out ManualId[] tabooManualIds) => (manualIds, tabooManualIds) = nowLevel switch
         {
             1 => (new ManualId[] { ManualId.NoKanji }, new ManualId[] { }),
-            2 => (new ManualId[] { ManualId.NoMuchKutoten, ManualId.NoContinuousHiragana }, new ManualId[] { }),
+            2 => (new ManualId[] { /*ManualId.NoMuchKutoten,*/ ManualId.NoContinuousHiragana }, new ManualId[] { }),
             3 => (new ManualId[] { ManualId.NoEvenNumber }, new ManualId[] { ManualId.NoBiggerThan99Number }),
-            4 => (new ManualId[] { ManualId.NoMuchKutoten, ManualId.NoContinuousHiragana, ManualId.NoSymbol }, new ManualId[] { ManualId.NoBiggerThan99Number }),
-            5 => (new ManualId[] { ManualId.NoMuchKutoten, ManualId.NoEvenNumber, ManualId.NoSymbol }, new ManualId[] { ManualId.NoBiggerThan99Number, ManualId.NoOM }),
+            4 => (new ManualId[] { /*ManualId.NoMuchKutoten,*/ ManualId.NoContinuousHiragana, ManualId.NoSymbol }, new ManualId[] { ManualId.NoBiggerThan99Number }),
+            5 => (new ManualId[] { /*ManualId.NoMuchKutoten,*/ ManualId.NoEvenNumber, ManualId.NoSymbol }, new ManualId[] { ManualId.NoBiggerThan99Number, ManualId.NoOM }),
             _ => (new ManualId[] { }, new ManualId[] { }),
         };
     }
