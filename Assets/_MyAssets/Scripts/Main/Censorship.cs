@@ -204,7 +204,7 @@ public class Censorship : MonoBehaviour
         }
 
         remainingText = new string(remainingChars);
-        targetText.text = remainingText;
+        // targetText.text = remainingText;
 
         Debug.Log($"■ 検閲された文字: 「{censoredChars}」");
         Debug.Log($"■ 残された文字列: 「{remainingText}」");
