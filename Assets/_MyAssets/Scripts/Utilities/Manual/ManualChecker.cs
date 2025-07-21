@@ -24,6 +24,7 @@ namespace Scripts.Utilities
 
             foreach (ManualId id in ids)
             {
+                $"Checking {id} in text: {text}. Result is : {text.Check(id)}".Log();
                 if (text.Check(id) == false)
                     return false;
             }
