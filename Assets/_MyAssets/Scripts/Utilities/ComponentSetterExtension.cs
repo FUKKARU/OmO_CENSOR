@@ -96,6 +96,20 @@ namespace Scripts.Utilities
             transform.eulerAngles = rotation;
         }
 
+        public static void SetAnchorPosX(this RectTransform rectTransform, float x)
+        {
+            Vector2 anchoredPosition = rectTransform.anchoredPosition;
+            anchoredPosition.x = x;
+            rectTransform.anchoredPosition = anchoredPosition;
+        }
+
+        public static void SetAnchorPosY(this RectTransform rectTransform, float y)
+        {
+            Vector2 anchoredPosition = rectTransform.anchoredPosition;
+            anchoredPosition.y = y;
+            rectTransform.anchoredPosition = anchoredPosition;
+        }
+
         public static void SetLocalPosX(this Transform transform, float x)
         {
             Vector3 localPosition = transform.localPosition;

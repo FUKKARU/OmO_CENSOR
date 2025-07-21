@@ -7,6 +7,7 @@ using Scripts.Utilities;
 using Scripts.Utilities.Buttons;
 using Ct = System.Threading.CancellationToken;
 using Scripts.ScriptableObjects;
+using Scripts.Scenes.Result;
 
 namespace Scripts.Scenes.Title
 {
@@ -34,9 +35,15 @@ namespace Scripts.Scenes.Title
             BackgroundImage.enabled = false;
             Text.enabled = false;
             bg.sprite = sp;
-            bg.rectTransform.SetScaleX(0);
-            await 0.5f.SecAwait(ct);
-            await bg.transform.DOScaleX(1, 0.3f).SetEase(Ease.InBounce).WithCancellation(ct);
+            {
+                if (CompleteDirectionManager.DoNotUseFadeInTransitionOnTitleBegin == false)
+                {
+                    bg.rectTransform.SetScaleX(0);
+                    await 0.5f.SecAwait(ct);
+                    await bg.transform.DOScaleX(1, 0.3f).SetEase(Ease.InBounce).WithCancellation(ct);
+                }
+                CompleteDirectionManager.DoNotUseFadeInTransitionOnTitleBegin = false;
+            }
             BackgroundImage.enabled = true;
             Text.enabled = true;
 
