@@ -1,5 +1,7 @@
+using UnityEngine;
 using Scripts.Utilities;
 using Scripts.Scenes.Result;
+using Unity.VisualScripting;
 
 namespace Scripts.Scenes.Main
 {
@@ -16,6 +18,9 @@ namespace Scripts.Scenes.Main
 
             // 現在の問題数に応じたManualIdを取得
             GetManualIds(ResultState.WhenClearNowLevel, out _manualIds, out _tabooManualIds);
+
+            if (submission == string.Empty)
+                return _tabooManualIds.Length > 0 ? ResultType.Death : ResultType.Over;
 
             if (submission.Check(_tabooManualIds) == false)
                 return ResultType.Death;
