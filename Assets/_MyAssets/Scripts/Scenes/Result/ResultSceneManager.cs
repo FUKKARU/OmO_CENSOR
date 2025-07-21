@@ -11,15 +11,25 @@ namespace Scripts.Scenes.Result
             {
                 case ResultType.Clear:
                     if (ResultState.WhenClearNowLevel > ResultState.MaxLevel)
+                    {
+                        ResultState.WhenClearNowLevel = 1;
                         SceneId.Result_Complete.LoadAsync();
+                    }
                     else
+                    {
                         SceneId.Result_Clear.LoadAsync();
+                    }
                     break;
                 case ResultType.Over:
-                    SceneId.Result_Over.LoadAsync();
+                    {
+                        SceneId.Result_Over.LoadAsync();
+                    }
                     break;
                 case ResultType.Death:
-                    SceneId.Result_Death.LoadAsync();
+                    {
+                        ResultState.WhenClearNowLevel = 1;
+                        SceneId.Result_Death.LoadAsync();
+                    }
                     break;
             }
         }

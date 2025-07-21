@@ -50,19 +50,7 @@ public class SubmitButtonManager : ATextButtonManager
         ResultState.Type = resultType;
         {
             if (resultType == ResultType.Clear)
-            {
-                if (ResultState.WhenClearNowLevel >= 5)
-                {
-                    ResultState.WhenClearNowLevel = 1; // 出世したら、タイトルへ
-                }
-                else
-                {
-                    ResultState.WhenClearNowLevel++; // クリアしたら次のステージへ
-                }
-            }
-            else if (resultType == ResultType.Over) { } // オーバーしたらそのステージをもう一度
-            else
-                ResultState.WhenClearNowLevel = 1; // 磔になったら終わり、タイトルへ
+                ++ResultState.WhenClearNowLevel; // 問題数アップ
         }
     }
 }

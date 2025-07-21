@@ -12,7 +12,7 @@ namespace Scripts.Scenes.Result
     {
         public static ResultType Type { get; set; } = ResultType.Clear;
 
-        public static int MaxLevel = 5; // [1,5]
+        public static readonly int MaxLevel = 5; // [1,5]
         public static int WhenClearNowLevel = 1;  // [1,5]
     }
 }
