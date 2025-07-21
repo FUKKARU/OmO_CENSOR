@@ -20,9 +20,17 @@ namespace Scripts.ScriptableObjects
         [Space(25)]
         [Header("BGM")]
         [SerializeField] private AudioClip _titleBGM;
+        [SerializeField] private AudioClip _mainBGM;
+        [SerializeField] private AudioClip _clearBGM;
+        [SerializeField] private AudioClip _completeBGM;
+        [SerializeField] private AudioClip _overBGM;
         [SerializeField] private AudioClip _deathBGM;
 
         public AudioClip TitleBGM => _titleBGM;
+        public AudioClip MainBGM => _mainBGM;
+        public AudioClip ClearBGM => _clearBGM;
+        public AudioClip CompleteBGM => _completeBGM;
+        public AudioClip OverBGM => _overBGM;
         public AudioClip DeathBGM => _deathBGM;
 
         [Space(25)]
