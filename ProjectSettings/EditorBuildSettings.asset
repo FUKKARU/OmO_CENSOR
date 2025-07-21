@@ -22,10 +22,10 @@ EditorBuildSettings:
     guid: 225e57a9ac0ad48ad95a1ecb63bd9666
   - enabled: 1
     path: Assets/_MyAssets/Scenes/Over.unity
-    guid: 99a4152e95de649a2997625babc870bb
+    guid: 2434ca339340d46b4b4a6c4ddf0e43da
   - enabled: 1
     path: Assets/_MyAssets/Scenes/Death.unity
-    guid: 2434ca339340d46b4b4a6c4ddf0e43da
+    guid: 99a4152e95de649a2997625babc870bb
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

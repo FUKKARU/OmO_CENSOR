@@ -8,7 +8,7 @@ using Ct = System.Threading.CancellationToken;
 
 namespace Scripts.Scenes.Result
 {
-    public sealed class ClearNextButtonManager : ATextButtonManager
+    public sealed class OverRetryButtonManager : ATextButtonManager
     {
         [SerializeField] private GameObject bg;
         [SerializeField] private AudioSource bgmAs;
@@ -23,10 +23,13 @@ namespace Scripts.Scenes.Result
             bg.transform.SetScaleX(0);
             await 0.5f.SecAwait(ct);
             await bg.transform.DOScaleX(1, 0.3f).SetEase(Ease.InBounce).WithCancellation(ct);
-            BackgroundImage.enabled = true;
-            Text.enabled = true;
+            8.0f.SecAwaitThenDo(() =>
+            {
+                BackgroundImage.enabled = true;
+                Text.enabled = true;
+            }, ct).Forget();
 
-            0.2f.SecAwaitThenDo(() => bgmAs.Raise(SSound.Entity.ClearBGM, SoundType.BGM), ct).Forget();
+            0.2f.SecAwaitThenDo(() => bgmAs.Raise(SSound.Entity.OverBGM, SoundType.BGM), ct).Forget();
         }
 
         private async UniTask GoToNextScene(Ct ct)
