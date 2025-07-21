@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dba0c88fc53747c47a92a03d402577ec
+guid: a0bc34e7ba54e4c4fb153947bf27eeab
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1497286608835707689
-    second: desk01_lambert1_Metallic.1001_0
+      213: 2057516106615078274
+    second: sprite_1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,7 +97,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -111,7 +110,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-
+    buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -127,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: desk01_lambert1_Metallic.1001_0
+      name: sprite_1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 2048
-        height: 2048
+        y: 2
+        width: 36
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7dcf56123c1983be0800000000000000
-      internalID: -1497286608835707689
+      spriteID: 28dbf6e6ff3cd8c10800000000000000
+      internalID: 2057516106615078274
       vertices: []
       indices: 
       edges: []
@@ -161,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      desk01_lambert1_Metallic.1001_0: -1497286608835707689
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
