@@ -25,12 +25,17 @@ public class BookPageController : MonoBehaviour
     {
         if (isProcessing) return;
 
+        int nextPage = bookUI.CurrentPage + direction;
+
+        // ページが -1 未満または 5 以上のときは処理しない
+        if (nextPage < 0 || nextPage >= 5)
+            return;
+
         isProcessing = true;
 
-        // ページを進める/戻す
-        bookUI.CurrentPage += direction;
+        bookUI.CurrentPage = nextPage;
 
-        // ページ遷移アニメーションなどの終了待機（0.5秒は仮。必要に応じて変更）
+        // ページ遷移アニメーションなどの終了待機（0.5秒は仮）
         await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
 
         isProcessing = false;
