@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "SGJ_GameJam2025.sln"
+    "dotnet.defaultSolution": "OmO_CENSOR.sln"
 }
