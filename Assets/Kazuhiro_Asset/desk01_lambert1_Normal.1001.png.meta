@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      desk01_lambert1_Normal.1001_0: -5126706877239177234
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
