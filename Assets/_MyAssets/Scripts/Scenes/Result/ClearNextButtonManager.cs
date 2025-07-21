@@ -1,22 +1,13 @@
-using UnityEngine;
-using UnityEngine.UI;
-using Cysharp.Threading.Tasks;
 using Scripts.Utilities;
-using Ct = System.Threading.CancellationToken;
+using Scripts.Utilities.Buttons;
 
 namespace Scripts.Scenes.Result
 {
-    public sealed class ClearNextButtonManager : MonoBehaviour
+    public sealed class ClearNextButtonManager : ATextButtonManager
     {
-        [SerializeField] private Button button;
-
-        private void Awake() => Impl(destroyCancellationToken).Forget();
-
-        private async UniTask Impl(Ct ct)
+        protected sealed override void OnClickSucceeded()
         {
-            button.onClick.AddListener(() => SceneId.Main.LoadAsync());
-
-            // Do Something.
+            SceneId.Main.LoadAsync();
         }
     }
 }
