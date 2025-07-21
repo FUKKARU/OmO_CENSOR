@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace Scripts.Utilities
 {
     public static partial class ManualChecker
@@ -10,8 +12,6 @@ namespace Scripts.Utilities
         }
 #endif
         public static bool Check_NoKanji(this string text)
-        {
-            return !System.Text.RegularExpressions.Regex.IsMatch(text, @"\p{IsCJKUnifiedIdeographs}");
-        }
+            => Regex.IsMatch(text, @"[\u4E00-\u9FFF\u3400-\u4DBF]");
     }
 }

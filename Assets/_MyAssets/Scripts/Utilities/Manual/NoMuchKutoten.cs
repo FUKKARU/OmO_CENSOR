@@ -23,7 +23,7 @@ namespace Scripts.Utilities
             for (int i = 0; i < text.Length; i++)
             {
                 char begin = text[i];
-                if (begin is not ('。' or '！' or '？' or '!' or '?'))
+                if (begin is not ('。' or '！' or '？' or '!' or '?') && i != 0)
                     continue; // 文の始まりではない
 
                 for (int j = i + 1; j < text.Length; j++)
