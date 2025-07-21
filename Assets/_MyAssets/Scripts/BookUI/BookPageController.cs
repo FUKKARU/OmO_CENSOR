@@ -10,15 +10,28 @@ public class BookPageController : MonoBehaviour
     [SerializeField] private Button nextButton;
     [SerializeField] private Button prevButton;
 
+    [SerializeField] private int maxPageCount = 5;
+    [SerializeField] private float pageChangeCooldown = 0.5f;
+
     private bool isProcessing = false;
 
     void Start()
     {
         if (nextButton != null)
-            nextButton.onClick.AddListener(() => GoToPageAsync(1).Forget());
+            nextButton.onClick.AddListener(OnNextButtonClick);
 
         if (prevButton != null)
-            prevButton.onClick.AddListener(() => GoToPageAsync(-1).Forget());
+            prevButton.onClick.AddListener(OnPrevButtonClick);
+    }
+
+    private void OnNextButtonClick()
+    {
+        GoToPageAsync(1).Forget();
+    }
+
+    private void OnPrevButtonClick()
+    {
+        GoToPageAsync(-1).Forget();
     }
 
     private async UniTaskVoid GoToPageAsync(int direction)
@@ -27,17 +40,19 @@ public class BookPageController : MonoBehaviour
 
         int nextPage = bookUI.CurrentPage + direction;
 
-        // ページが -1 未満または 5 以上のときは処理しない
-        if (nextPage < 0 || nextPage >= 5)
-            return;
+        if (!IsValidPage(nextPage)) return;
 
         isProcessing = true;
 
         bookUI.CurrentPage = nextPage;
 
-        // ページ遷移アニメーションなどの終了待機（0.5秒は仮）
-        await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+        await UniTask.Delay(TimeSpan.FromSeconds(pageChangeCooldown));
 
         isProcessing = false;
+    }
+
+    private bool IsValidPage(int page)
+    {
+        return page >= 0 && page < maxPageCount;
     }
 }
