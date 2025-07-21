@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 262000765}
   - component: {fileID: 262000764}
   m_Layer: 0
-  m_Name: AudioSource
+  m_Name: BGM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -466,7 +466,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -3618,11 +3618,11 @@ MonoBehaviour:
   ink: 1000
   useInk: 1.5
   fillInk: {fileID: 297480742}
-  screenDrawMin: {x: 625, y: 0}
-  screenDrawMax: {x: 1300, y: 1000}
+  screenDrawMin: {x: 100, y: 100}
+  screenDrawMax: {x: 1000, y: 800}
   book: {fileID: 1587810768}
-  bookTextA: {fileID: 376218703}
-  bookTextB: {fileID: 555969299}
+  bookTextA: {fileID: 555969299}
+  bookTextB: {fileID: 376218703}
   pageText: {fileID: 1533252617}
 --- !u!4 &1953302816
 Transform:
@@ -4190,103 +4190,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
---- !u!82 &5492075103182876069
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7390414042281451727}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!222 &5669532622325513025
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4471,7 +4374,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5982681712704682787}
-  - component: {fileID: 5492075103182876069}
   - component: {fileID: 7390414042281451728}
   m_Layer: 5
   m_Name: TextButton
@@ -4498,10 +4400,9 @@ MonoBehaviour:
   seAudioSource: {fileID: 1685990521970827352}
   displayText: "\u63D0\u51FA"
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverColor: {r: 1, g: 0.940331, b: 0.3726415, a: 1}
+  hoverColor: {r: 1, g: 0.9411765, b: 0.37254903, a: 1}
   censorship: {fileID: 1953302815}
   manualChecker: {fileID: 718615180}
-  bg: {fileID: 6886463373821002434}
   hanko: {fileID: 2012206655}
   hankoMark: {fileID: 978753789}
   bgmAs: {fileID: 262000764}

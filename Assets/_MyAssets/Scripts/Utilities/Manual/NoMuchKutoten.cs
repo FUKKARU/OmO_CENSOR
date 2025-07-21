@@ -2,8 +2,7 @@ namespace Scripts.Utilities
 {
     public static partial class ManualChecker
     {
-
-#if true
+#if false
         [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Test_Check_MochKutoten()
         {
