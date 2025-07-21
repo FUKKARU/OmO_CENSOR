@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fbd2b7326e0c4f60a630786c8e412b1, type: 3}
+  m_Name: SSound
+  m_EditorClassIdentifier: 
+  _audioMixer: {fileID: 24100000, guid: 2644194b5c5484828a7a03475a0489cb, type: 2}
+  _AMGroupBGM: {fileID: 5903218325060628114, guid: 2644194b5c5484828a7a03475a0489cb, type: 2}
+  _AMGroupSE: {fileID: 1653031143762423998, guid: 2644194b5c5484828a7a03475a0489cb, type: 2}
+  _AMGroupMaster: {fileID: 24300002, guid: 2644194b5c5484828a7a03475a0489cb, type: 2}
+  _titleBGM: {fileID: 8300000, guid: c55aae84db58ea344b6c35f8b76e7ae3, type: 3}
+  _mainBGM: {fileID: 8300000, guid: c53ae09d08673144bbbb1b523a56ad6d, type: 3}
+  _clearBGM: {fileID: 8300000, guid: a658a0626968f7b45a83542f46f4ea95, type: 3}
+  _completeBGM: {fileID: 8300000, guid: 50d0e9a047906cd49aad46508f9e1c64, type: 3}
+  _overBGM: {fileID: 8300000, guid: c55aae84db58ea344b6c35f8b76e7ae3, type: 3}
+  _deathBGM: {fileID: 8300000, guid: 3a56639139dd1bd4f84d1cd6005895b3, type: 3}
+  _clickSE: {fileID: 8300000, guid: 6f086c19390662949a6a2ca561e626fa, type: 3}
+  _hoverSE: {fileID: 8300000, guid: 363c2b5878d87de4887ca5640798f886, type: 3}
