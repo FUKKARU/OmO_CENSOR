@@ -13,26 +13,23 @@ public class SubmitButtonManager : ATextButtonManager
 {
     [SerializeField] Censorship censorship;
     [SerializeField] Scripts.Scenes.Main.ManualChecker manualChecker;
-    [SerializeField] private Image bg;
     [SerializeField] GameObject hanko;
     [SerializeField] GameObject hankoMark;
     [SerializeField] private AudioSource bgmAs;
 
-    private void Start() => ChangeBgPeriodically(destroyCancellationToken).Forget();
-    protected sealed override void OnClickSucceeded() => GoToResultScene(destroyCancellationToken).Forget();
-
-    private async UniTask ChangeBgPeriodically(Ct ct)
+    private void Start()
     {
         hankoMark.SetActive(false);
-        0.2f.SecAwaitThenDo(() => bgmAs.Raise(SSound.Entity.MainBGM, SoundType.BGM), ct).Forget();
+        0.2f.SecAwaitThenDo(() => bgmAs.Raise(SSound.Entity.MainBGM, SoundType.BGM), destroyCancellationToken).Forget();
     }
+
+    protected sealed override void OnClickSucceeded() => GoToResultScene(destroyCancellationToken).Forget();
 
     private async UniTask GoToResultScene(Ct ct)
     {
         BackgroundImage.enabled = false;
         Text.enabled = false;
-        
-        await bg.transform.DOScaleX(0, 0.15f).SetEase(Ease.InBounce).WithCancellation(ct);
+
         await 0.5f.SecAwait(ct);
         string text = censorship.RemainingText;
         if (!string.IsNullOrEmpty(text))
@@ -60,7 +57,7 @@ public class SubmitButtonManager : ATextButtonManager
                 }
                 else
                 {
-                    ResultState.WhenClearNowLevel++; // クリアしたら次のステージへ                    
+                    ResultState.WhenClearNowLevel++; // クリアしたら次のステージへ
                 }
             }
             else if (resultType == ResultType.Over) { } // オーバーしたらそのステージをもう一度
