@@ -21,7 +21,6 @@ public class Censorship : MonoBehaviour
     [SerializeField] private Image fillInk;
     [SerializeField] private Vector2 screenDrawMin = new Vector2(100, 100);
     [SerializeField] private Vector2 screenDrawMax = new Vector2(1000, 800);
-    [SerializeField] private BookUI book;
     [SerializeField] private TextMeshProUGUI bookTextA;
     [SerializeField] private TextMeshProUGUI bookTextB;
     [SerializeField] private TextMeshProUGUI pageText;
@@ -57,35 +56,6 @@ public class Censorship : MonoBehaviour
     void Update()
     {
         HandleDrawingInput();
-
-        if (book.CurrentPage <= 0 || book.CurrentPage >= 4)
-        {
-            pageText.text = string.Empty;
-            bookTextA.text = string.Empty;
-            bookTextB.text = string.Empty;
-        }
-        else
-        {
-            switch (book.CurrentPage)
-            {
-                case 1:
-                    bookTextA.text = SManualData.Entity.Get(2);
-                    bookTextB.text = SManualData.Entity.Get(1);
-                    break;
-                case 2:
-                    bookTextA.text = SManualData.Entity.Get(4);
-                    bookTextB.text = SManualData.Entity.Get(3);
-                    break;
-                case 3:
-                    bookTextA.text = SManualData.Entity.Get(5);
-                    break;
-                default:
-                    bookTextA.text = string.Empty;
-                    bookTextB.text = string.Empty;
-                    break;
-            }
-            pageText.text = $"{book.CurrentPage}/3ページ";
-        }
     }
 
 
