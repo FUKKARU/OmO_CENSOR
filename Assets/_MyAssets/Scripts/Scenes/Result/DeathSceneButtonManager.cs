@@ -26,7 +26,7 @@ namespace Scripts.Scenes.Result
             BackgroundImage.enabled = true;
             Text.enabled = true;
 
-            0.2f.SecAwaitThenDo(() => bgmAs.Raise(SSound.Entity.TitleBGM, SoundType.BGM), ct).Forget();
+            0.2f.SecAwaitThenDo(() => bgmAs.Raise(SSound.Entity.TitleBGM, SoundType.BGM, pitch: 0.5f), ct).Forget();
         }
 
         private async UniTask GoToTitleScene(Ct ct)
@@ -35,6 +35,7 @@ namespace Scripts.Scenes.Result
             Text.enabled = false;
 
             await bg.transform.DOScaleX(0, 0.15f).SetEase(Ease.InBounce).WithCancellation(ct);
+            bgmAs.DOFade(0, 0.3f).SetEase(Ease.InQuad).WithCancellation(ct).Forget();
             await 0.5f.SecAwait(ct);
 
             SceneId.Title.LoadAsync();
