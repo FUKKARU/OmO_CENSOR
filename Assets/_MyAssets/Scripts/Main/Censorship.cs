@@ -108,13 +108,6 @@ public class Censorship : MonoBehaviour
         {
             Vector3 screenPos = Input.mousePosition;
 
-            // 範囲外なら描画しない
-            if (screenPos.x < screenDrawMin.x || screenPos.x > screenDrawMax.x ||
-                screenPos.y < screenDrawMin.y || screenPos.y > screenDrawMax.y)
-            {
-                return;
-            }
-
             Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(screenPos);
             mouseWorldPos.z = fixedZ;
 
