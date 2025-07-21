@@ -66,5 +66,7 @@ namespace Scripts.Scenes.Title
 
             SceneId.Main.LoadAsync();
         }
+
+        protected sealed override void PlayHoverSE() => SeAudioSource.Raise(SSound.Entity.HoverSE, SoundType.SE, 0.05f, 1, 0);
     }
 }

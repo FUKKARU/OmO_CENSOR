@@ -153,8 +153,8 @@ namespace Scripts.Utilities.Buttons
                 image.transform.DOScale(imageInitialScale * scaleCoef, 0.1f).SetEase(Ease.OutBack);
         }
 
-        private void PlayHoverSE() => seAudioSource.Raise(SSound.Entity.HoverSE, SoundType.SE);
-        private void PlayClickSE() => seAudioSource.Raise(SSound.Entity.ClickSE, SoundType.SE);
+        protected virtual void PlayHoverSE() => seAudioSource.Raise(SSound.Entity.HoverSE, SoundType.SE, 1, 1, 0);
+        protected virtual void PlayClickSE() => seAudioSource.Raise(SSound.Entity.ClickSE, SoundType.SE, 1, 1, 0);
 
         protected void MakeClickEventDisabled() => isClickEnabled &= false;
         protected virtual void OnClickSucceeded() { }
