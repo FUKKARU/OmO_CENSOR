@@ -62,6 +62,7 @@ namespace Scripts.Scenes.Title
             Text.enabled = false;
 
             await bg.transform.DOScaleX(0, 0.15f).SetEase(Ease.InBounce).WithCancellation(ct);
+            bgmAs.DOFade(0, 0.3f).SetEase(Ease.InQuad).WithCancellation(ct).Forget();
             await 0.5f.SecAwait(ct);
 
             SceneId.Main.LoadAsync();
